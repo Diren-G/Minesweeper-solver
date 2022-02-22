@@ -71,8 +71,17 @@ public class gameboard{
   }
 
   // array values either by column or all at once
-  public array get_array_values(){
-    // how the hell
+  public void print_array_values(){
+    for(int r=0; r < current_board.length; r++){
+      for(int c=0; c < current_board[r].length; c++){
+        System.out.print(current_board[r][c]);
+      }
+      System.out.println();
+    }
+  }
+
+  public int get_value(int r, int c){
+    return current_board[r][c];
   }
 
   // data check

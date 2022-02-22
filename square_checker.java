@@ -13,7 +13,7 @@ public class square_checker{
   public void update_current_square(int r, int c){
     // check if the values are valid and updoot if true
     if(is_valid(r,c)){
-      
+      current_square_char = current_board.get_value(r, c);
     }
     else{
       System.out.println("Invalid square");

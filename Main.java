@@ -4,6 +4,6 @@ class Main {
 
     // create minesweeper field
     gameboard test = new gameboard('e');
-    System.out.print(test);
+    test.print_array_values();
   }
 }
