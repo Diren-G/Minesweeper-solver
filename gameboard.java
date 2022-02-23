@@ -71,9 +71,9 @@ public class gameboard{
   }
 
   // array values either by column or all at once
-  public void print_array_values(){
-    for(int r=0; r < current_board.length; r++){
-      for(int c=0; c < current_board[r].length; c++){
+  public void array_values(){
+    for(int r = 0; r < current_board.length; r++){
+      for(int c = 0; c < current_board[r].length; c++){
         System.out.print(current_board[r][c]);
       }
       System.out.println();

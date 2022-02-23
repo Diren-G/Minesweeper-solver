@@ -10,17 +10,17 @@ public class square_checker{
   private int num_of_cleared_adjacent;
 
   // need to be able to update the variables
-  public void update_current_square(int r, int c){
+ // public void update_current_square(int r, int c){
     // check if the values are valid and updoot if true
-    if(is_valid(r,c)){
-      current_square_char = current_board.get_value(r, c);
-    }
-    else{
-      System.out.println("Invalid square");
-    }
+    //if(is_valid(r,c)){
+      //current_square_char = current_board.get_value(r, c);
+    //}
+    //else{
+      //System.out.println("Invalid square");
+    //}
     // 0 = no mines in all squares next to it
     // 1-8 = inidcates the number of mines near it
     // f = indicates that the spot has been flagged for having a mine
     // n = null or unopened
-  }
+  //}
 }
