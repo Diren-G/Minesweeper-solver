@@ -71,7 +71,7 @@ public class gameboard{
   }
 
   // array values either by column or all at once
-  public void array_values(){
+  public void print_array_values(){
     for(int r = 0; r < current_board.length; r++){
       for(int c = 0; c < current_board[r].length; c++){
         System.out.print(current_board[r][c]);
@@ -82,6 +82,22 @@ public class gameboard{
 
   public int get_value(int r, int c){
     return current_board[r][c];
+  }
+  public void set_value(int r, int c, char val){
+    if (((val == '0') || // 0 mines
+        (val == '1') || // 1 mine
+        (val == '2') || // 2 mines
+        (val == '3') || // 3 mines
+        (val == '4') || // 4 mines
+        (val == '5') || // 5 mines
+        (val == '6') || // 6 mines
+        (val == '7') || // 7 mines
+        (val == '8') || // 8 mines
+        (val == 'f')) && // is mine
+        ((r < row) && (c < column))){ 
+      current_board[r][c] = val;
+      }
+    else{}
   }
 
   // data check
