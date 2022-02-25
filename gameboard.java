@@ -16,6 +16,8 @@ public class gameboard{
     if(difficulty == 'e'){
       //easy
       current_board = new char[10][8];
+      row = 10;
+      column = 8;
       total_flags = 10;
       for(int r=0; r < current_board.length; r++){
       // iterate through column
@@ -28,6 +30,8 @@ public class gameboard{
       // medium
       current_board = new char[18][14];
       total_flags = 40;
+      row = 18;
+      column = 14;
       for(int r=0; r < current_board.length; r++){
       // iterate through column
         for(int c=0; c < current_board[r].length; c++){
@@ -39,6 +43,8 @@ public class gameboard{
       //hard
       current_board = new char[24][20];
       total_flags = 99;
+      row = 24;
+      column = 20;
       for(int r=0; r < current_board.length; r++){
       // iterate through column
         for(int c=0; c < current_board[r].length; c++){
@@ -105,4 +111,13 @@ public class gameboard{
     if((r < row) && (c < column)){return true;}
     else{return false;}
   }
+
+  // get max length
+  public int get_row(){
+    return row;
+  }
+  public int get_column(){
+    return column;
+  }
+  
 }
