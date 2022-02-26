@@ -5,10 +5,16 @@ public class square_checker{
 
   // value of square
   private char current_square_char;
+  /*
+  0-8 = num mines around them
+  n = unsearched
+  f = flagged
+  */
   // is the number of flags it should have around it equal to the number of squares flagged around it
   private boolean is_satisfied;
   // the number of spaces adjacent to the square which you are on which have not been opened
-  private int num_of_cleared_adjacent;
+  private int num_of_cleared_adjacent = 0;
+  private int num_of_flags_adjacent = 0;
 
   // special squares
   private boolean is_corner;
@@ -94,6 +100,7 @@ public class square_checker{
       
     }
   }
+  
   //sets the value of the surrounding chars
   public void update_surrounding(int r, int c, gameboard name){
     // is corner or border
@@ -174,6 +181,123 @@ public class square_checker{
     }
   }
 
+  // increases the num of adjacent tiles and the num of cleared tiles near it
+  public void update_cleared_or_adjacent(int r, int c, gameboard name){
+    if (is_corner || is_border){
+      // is corner
+      if(is_corner){
+        // tr
+        if(corner_quadrant == '1'){
+          if(l_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(l_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(bl_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(bl_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(b_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(b_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+        }
+        // tl
+        else if(corner_quadrant == '2'){
+          if(r_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(r_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(br_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(br_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(b_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(b_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+        }
+        //bl
+        else if(corner_quadrant == '3'){
+          if(r_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(r_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(tr_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(tr_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(t_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(t_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+        }
+        //br
+        else if(corner_quadrant == '4'){
+          if(l_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(l_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(tl_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(tl_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(t_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(t_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+        }
+      }
+      // is border
+      else(is_border){
+        // top square
+        if(border_type == 't'){
+          if(l_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(l_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(bl_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(bl_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(b_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(b_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(br_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(br_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(r_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(r_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+        }
+        // left square
+        else if(border_type == 'l'){
+          if(t_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(t_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(br_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(br_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(b_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(b_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(tr_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(tr_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(r_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(r_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+        }
+        // bottom square
+        else if(border_type == 'b'){
+          if(l_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(l_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(tl_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(tl_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(t_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(t_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(tr_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(tr_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(r_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(r_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+        }
+        // right square
+        else if(border_type == 'r'){
+          if(l_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(l_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(bl_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(bl_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(b_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(b_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(tl_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(tl_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+          if(t_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+          if(t_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+        }
+      }
+    }
+    else{
+      if(l_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+      if(l_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+      if(bl_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+      if(bl_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+      if(b_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+      if(b_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+      if(br_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+      if(br_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+      if(r_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+      if(r_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+      if(tl_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+      if(tl_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+      if(t_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+      if(t_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+      if(tr_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
+      if(tr_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
+    }
+  }
   //logic
   // if adjacent flags is 0 and the number of open spaces is equivalent to the value of the square, then the open spaces are flags
   // if there isn't enough information skip it and return later
