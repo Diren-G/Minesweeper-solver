@@ -10,10 +10,14 @@ public class square_checker{
   n = unsearched
   f = flagged
   */
+  private int current_square_as_int;
   // is the number of flags it should have around it equal to the number of squares flagged around it
   private boolean is_satisfied;
+  
   // the number of spaces adjacent to the square which you are on which have not been opened
   private int num_of_cleared_adjacent = 0;
+
+  // num of flags near the square
   private int num_of_flags_adjacent = 0;
 
   // special squares
@@ -29,7 +33,6 @@ public class square_checker{
   // this is just following graphing quadrants
   private char corner_quadrant;
   
-
   // constants which only change if it is a border or corner
   private int squares_near_said_square = 8;
 
@@ -181,7 +184,7 @@ public class square_checker{
     }
   }
 
-  // increases the num of adjacent tiles and the num of cleared tiles near it
+  // counts the number of revealed adjacent tiles and flags
   public void update_cleared_or_adjacent(int r, int c, gameboard name){
     if (is_corner || is_border){
       // is corner
@@ -298,6 +301,52 @@ public class square_checker{
       if(tr_char == 'f'){num_of_flags_adjacent = num_of_flags_adjacent + 1;}
     }
   }
+
+  // checks to see if the square has fullfilled the number it needs
+  public void check_if_satisfied(int r, int c, gameboard name){
+    if (num_of_flags_adjacent == current_square_as_int){
+      is_satisfied = true;
+    }
+    else if(num_of_flags_adjacent > current_square_as_int){
+      System.out.println("Error");
+    }
+    else{
+      is_satisfied = false;
+    }
+ }
+
+  // takes the char value if it is numerical and converts to integer
+  public void equate_char_val_to_int(char val){
+    if(val == '0'){
+      current_square_as_int = 0;
+    }
+    else if(val == '1'){
+      current_square_as_int = 1;
+    }
+    else if(val == '2'){
+      current_square_as_int = 2;
+    }
+    else if(val == '3'){
+      current_square_as_int = 3;
+    }
+    else if(val == '4'){
+      current_square_as_int = 4;
+    }
+    else if(val == '5'){
+      current_square_as_int = 5;
+    }
+    else if(val == '6'){
+      current_square_as_int = 6;
+    }
+    else if(val == '7'){
+      current_square_as_int = 7;
+    }
+    else if(val == '8'){
+      current_square_as_int = 8;
+    }
+  }
+
+  
   //logic
   // if adjacent flags is 0 and the number of open spaces is equivalent to the value of the square, then the open spaces are flags
   // if there isn't enough information skip it and return later
