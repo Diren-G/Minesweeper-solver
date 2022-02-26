@@ -347,7 +347,25 @@ public class square_checker{
   }
 
   
-  //logic
+
+  /*
+  Logic:
+  1) check to see if the value is satisfied in what it knows is marked already
+    if this is the case then tell the user to clear out all space besides it
+  2) check to see if the remainind adjacent spaces is equivalent too that of all the mines it needs to fill
+    if this is the case set all of their values to flags
+
+  Complex logic:
+  1) Preconditions: 
+    there is a 1 and a 2 adjacent to one another
+    there are 3 open spaces for the 2
+
+    What it means:
+      The one space which is not shared by the 1 and the 2 is a flag 100% of the time
+  */
+
+
+  
   // if adjacent flags is 0 and the number of open spaces is equivalent to the value of the square, then the open spaces are flags
   // if there isn't enough information skip it and return later
   
