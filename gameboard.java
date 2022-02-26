@@ -86,7 +86,7 @@ public class gameboard{
     }
   }
 
-  public int get_value(int r, int c){
+  public char get_value(int r, int c){
     return current_board[r][c];
   }
   public void set_value(int r, int c, char val){
