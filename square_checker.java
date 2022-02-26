@@ -100,9 +100,65 @@ public class square_checker{
     if (is_corner || is_border){
       // is corner
       if(is_corner){
+        // tr
+        if(corner_quadrant == '1'){
+          l_char = name.get_value((r-1), c);
+          bl_char = name.get_value((r-1), (c-1));
+          b_char = name.get_value(r, (c-1));
+        }
+        // tl
+        else if(corner_quadrant == '2'){
+          b_char = name.get_value(r, (c-1));
+          br_char = name.get_value((r+1), (c-1));
+          r_char = name.get_value((r+1), c);
+        }
+        //bl
+        else if(corner_quadrant == '3'){
+          t_char = name.get_value(r, (c+1));
+          r_char = name.get_value((r+1), c);
+          tr_char = name.get_value((r+1), (c+1));
+        }
+        //br
+        else if(corner_quadrant == '4'){
+          t_char = name.get_value(r, (c+1));
+          tl_char = name.get_value((r-1), (c+1));
+          l_char = name.get_value((r-1), c);
+        }
       }
       // is border
       else(is_border){
+        // top square
+        if(border_type == 't'){
+          l_char = name.get_value((r-1), c);
+          bl_char = name.get_value((r-1), (c-1));
+          b_char = name.get_value(r, (c-1));
+          br_char = name.get_value((r+1), (c-1));
+          r_char = name.get_value((r+1), c);
+        }
+        // left square
+        else if(border_type == 'l'){
+          t_char = name.get_value(r, (c+1));
+          b_char = name.get_value(r, (c-1));
+          br_char = name.get_value((r+1), (c-1));
+          r_char = name.get_value((r+1), c);
+          tr_char = name.get_value((r+1), (c+1));
+        }
+        // bottom square
+        else if(border_type == 'b'){
+          t_char = name.get_value(r, (c+1));
+          tl_char = name.get_value((r-1), (c+1));
+          l_char = name.get_value((r-1), c);
+          r_char = name.get_value((r+1), c);
+          tr_char = name.get_value((r+1), (c+1));
+        }
+        // right square
+        else if(border_type == 'r'){
+          t_char = name.get_value(r, (c+1));
+          tl_char = name.get_value((r-1), (c+1));
+          l_char = name.get_value((r-1), c);
+          bl_char = name.get_value((r-1), (c-1));
+          b_char = name.get_value(r, (c-1));
+        }
       }
     }
     // is a normal piece
@@ -111,6 +167,10 @@ public class square_checker{
       tl_char = name.get_value((r-1), (c+1));
       l_char = name.get_value((r-1), c);
       bl_char = name.get_value((r-1), (c-1));
+      b_char = name.get_value(r, (c-1));
+      br_char = name.get_value((r+1), (c-1));
+      r_char = name.get_value((r+1), c);
+      tr_char = name.get_value((r+1), (c+1));
     }
   }
 
