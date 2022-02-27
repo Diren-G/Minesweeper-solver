@@ -52,7 +52,7 @@ public class square_checker{
     // c = column of the current squrare
     // name = name of the gameboard object
     
-    if((r == 0) || (c == 0) || (r == name.get_row()) || (c == name.get_column()){
+    if((r == 0) || (c == 0) || (r == name.get_row()) || (c == name.get_column())){
       // either border or corner
 
       // is corner
@@ -136,7 +136,7 @@ public class square_checker{
         }
       }
       // is border
-      else(is_border){
+      else if(is_border){
         // top square
         if(border_type == 't'){
           l_char = name.get_value((r-1), c);
@@ -227,7 +227,7 @@ public class square_checker{
         }
       }
       // is border
-      else(is_border){
+      else if(is_border){
         // top square
         if(border_type == 't'){
           if(l_char != 'n'){num_of_cleared_adjacent = num_of_cleared_adjacent + 1;}
@@ -351,7 +351,7 @@ public class square_checker{
     for(int row = -1; row < 2; row++){
       for(int column = -1; row < 2; column++){
         if(!((row == 0) && (column == 0))){
-          Sytem.out.println("Row " + (r+row) + ", column " + (c+column) + " is a clear slot");
+          System.out.println("Row " + (r+row) + ", column " + (c+column) + " is a clear slot");
         }
       }
     }

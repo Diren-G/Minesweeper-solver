@@ -119,5 +119,4 @@ public class gameboard{
   public int get_column(){
     return column;
   }
-  
 }
