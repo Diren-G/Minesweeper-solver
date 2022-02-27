@@ -346,7 +346,16 @@ public class square_checker{
     }
   }
 
-  
+  // prints the row and column of squares which should be cleared
+  public void print_clear_spaces(int r, int c, gameboard name){
+    for(int row = -1; row < 2; row++){
+      for(int column = -1; row < 2; column++){
+        if(!((row == 0) && (column == 0))){
+          Sytem.out.println("Row " + (r+row) + ", column " + (c+column) + " is a clear slot");
+        }
+      }
+    }
+  }
 
   /*
   Logic:
