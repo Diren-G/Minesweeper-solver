@@ -357,6 +357,42 @@ public class square_checker{
     }
   }
 
+  // if adjacent flags is 0 and the number of open spaces is equivalent to the value of the square, then the open spaces are flags
+  public void check_if_expected_matches_unkown(int r, int c, gameboard name){
+    if (adjacent_flags == 0){
+      if ((squares_near_said_square - num_of_cleared_adjacent) == current_square_as_int){
+        // all open spaces are null and should be flags
+      }
+    }
+  }
+
+  // update all squares nearby with a value (set them as flags)
+  public void update_all_adjacent_with_flags(int r, int c, gameboard name){
+    if (t_char == 'n'){
+      t_char  = 'f';
+    }
+    if (tl_char == ''){
+      tl_char = 'f';
+    }
+    if (l_char == ''){
+      l_char = 'f';
+    }
+    if (bl_char == ''){
+      bl_char = 'f';
+    }
+    if (b_char == ''){
+      b_char = 'f';
+    }
+    if (br_char == ''){
+      br_char = 'f';
+    }
+    if (r_char == ''){
+      r_char = 'f';
+    }
+    if (tr_char == ''){
+      tr_char = 'f';
+    }
+  }
   /*
   Logic:
   1) check to see if the value is satisfied in what it knows is marked already
@@ -371,11 +407,10 @@ public class square_checker{
 
     What it means:
       The one space which is not shared by the 1 and the 2 is a flag 100% of the time
+
+If max number of flags is equal to the number of spaces flagged, check to maek sure that all squares are satisified
   */
 
-
-  
-  // if adjacent flags is 0 and the number of open spaces is equivalent to the value of the square, then the open spaces are flags
   // if there isn't enough information skip it and return later
   
   /* special rules:
