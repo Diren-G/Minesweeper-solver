@@ -185,7 +185,7 @@ public class square_checker{
   }
 
   // counts the number of revealed adjacent tiles and flags
-  public void update_cleared_or_adjacent(int r, int c, gameboard name){
+  public void update_cleared_or_adjacent(){
     if (is_corner || is_border){
       // is corner
       if(is_corner){
@@ -303,7 +303,7 @@ public class square_checker{
   }
 
   // checks to see if the square has fullfilled the number it needs
-  public void check_if_satisfied(int r, int c, gameboard name){
+  public void check_if_satisfied(){
     if (num_of_flags_adjacent == current_square_as_int){
       is_satisfied = true;
     }
@@ -362,6 +362,7 @@ public class square_checker{
     if (adjacent_flags == 0){
       if ((squares_near_said_square - num_of_cleared_adjacent) == current_square_as_int){
         // all open spaces are null and should be flags
+        update_all_adjacent_with_flags(r, c, name);
       }
     }
   }
@@ -369,30 +370,42 @@ public class square_checker{
   // update all squares nearby with a value (set them as flags)
   public void update_all_adjacent_with_flags(int r, int c, gameboard name){
     if (t_char == 'n'){
-      t_char  = 'f';
+      name.set_value(r, c-1, 'f');
     }
     if (tl_char == ''){
-      tl_char = 'f';
+      names.set_value(r-1, c-1, 'f');
     }
     if (l_char == ''){
-      l_char = 'f';
+      names.set_value(r-1, c, 'f');
     }
     if (bl_char == ''){
-      bl_char = 'f';
+      names.set_value(r-1, c+1, 'f');
     }
     if (b_char == ''){
-      b_char = 'f';
+      names.set_value(r, c+1, 'f');
     }
     if (br_char == ''){
-      br_char = 'f';
+      names.set_value(r+1, c+1, 'f');
     }
     if (r_char == ''){
-      r_char = 'f';
+      names.set_value(r+1, c, 'f');
     }
     if (tr_char == ''){
-      tr_char = 'f';
+      names.set_value(r+1, c-1, 'f');
     }
   }
+
+  // will need to run this command through a while loop so that we can use variable pass through to check every surrounding square, c and r will need to be the values of something else for this one version unless we make it iterate through each version
+  public void special_rule_for_1(int r, int c, gameboard name){
+    if((current_square_char == '1') && /* an adjacent has 1 more adjacent than mines near it*/ && /* the other square only shares two neutral tiles with the 1*/)
+  }
+
+  // checking if the square has one more mine than it needs for the above function to have a less clunky boolean statement
+  public boolean has_one_more_mine_than_val(int r, int c, gameboard name){
+    
+  }
+
+  
   /*
   Logic:
   1) check to see if the value is satisfied in what it knows is marked already
