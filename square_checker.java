@@ -14,7 +14,7 @@ public class square_checker{
   // is the number of flags it should have around it equal to the number of squares flagged around it
   private boolean is_satisfied;
   
-  // the number of spaces adjacent to the square which you are on which have not been opened
+  // the number of spaces adjacent to the square which you are on which have been opened
   private int num_of_cleared_adjacent = 0;
 
   // num of flags near the square
@@ -397,12 +397,17 @@ public class square_checker{
 
   // will need to run this command through a while loop so that we can use variable pass through to check every surrounding square, c and r will need to be the values of something else for this one version unless we make it iterate through each version
   public void special_rule_for_1(int r, int c, gameboard name){
-    if((current_square_char == '1') && /* an adjacent has 1 more adjacent than mines near it*/ && /* the other square only shares two neutral tiles with the 1*/)
+    if((current_square_char == '1') && (has_one_more_unknown_than_val) && /* the other square only shares two neutral tiles with the 1*/ && /* the 1 only shares spaces with the other square*/)
   }
 
   // checking if the square has one more mine than it needs for the above function to have a less clunky boolean statement
-  public boolean has_one_more_mine_than_val(int r, int c, gameboard name){
-    
+  public boolean has_one_more_unknown_than_val(){
+    if(current_square_as_int == (squares_near_said_square - num_cleared_adjacent) + 1){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
   
