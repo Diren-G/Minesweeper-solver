@@ -372,32 +372,36 @@ public class square_checker{
     if (t_char == 'n'){
       name.set_value(r, c-1, 'f');
     }
-    if (tl_char == ''){
+    if (tl_char == 'n'){
       names.set_value(r-1, c-1, 'f');
     }
-    if (l_char == ''){
+    if (l_char == 'n'){
       names.set_value(r-1, c, 'f');
     }
-    if (bl_char == ''){
+    if (bl_char == 'n'){
       names.set_value(r-1, c+1, 'f');
     }
-    if (b_char == ''){
+    if (b_char == 'n'){
       names.set_value(r, c+1, 'f');
     }
-    if (br_char == ''){
+    if (br_char == 'n'){
       names.set_value(r+1, c+1, 'f');
     }
-    if (r_char == ''){
+    if (r_char == 'n'){
       names.set_value(r+1, c, 'f');
     }
-    if (tr_char == ''){
+    if (tr_char == 'n'){
       names.set_value(r+1, c-1, 'f');
     }
   }
 
   // will need to run this command through a while loop so that we can use variable pass through to check every surrounding square, c and r will need to be the values of something else for this one version unless we make it iterate through each version
-  public void special_rule_for_1(int r, int c, gameboard name){
-    if((current_square_char == '1') && (has_one_more_unknown_than_val) && /* the other square only shares two neutral tiles with the 1*/ && /* the 1 only shares spaces with the other square*/)
+
+
+  public void special_rule_for_1(int r1, int c1, int r2, int c2, gameboard name){
+    if((current_square_char == '1') && (has_one_more_unknown_than_val) && (num_adjacent_shared(r1, r2, c1, c2, name) == 2)  && (num_adjacent_shared(r1, r2, c1, c2, name) == num_of_cleared_adjacent)){
+      
+    }
   }
 
   // checking if the square has one more mine than it needs for the above function to have a less clunky boolean statement
@@ -407,6 +411,83 @@ public class square_checker{
     }
     else{
       return false;
+    }
+  }
+
+  // returns the number of spaces shared between two pieces which are adjacent
+  public int num_adjacent_shared(int r1, int r2, int c1, int c2, gameboard name){
+    // create a set of values which establishes the squares for the other piecce and compare them to the one that we have right now to deterine whether they share a border given that they are connected
+    int num_adjacent_shared = 0;
+    if(r1 == r2){
+      // rows are the same
+      if(name.get_value(r1,c1+1) == 'n'){
+        num_adjacent_shared ++;
+      }
+      else if(name.get_value(r1, c2-1) == 'n'){
+        num_adjacent_shared ++;
+      }
+      else if(name.get_value(r2, c1+1) == 'n'){
+        num_adjacent_shared ++;
+      }
+      else if(name.get_value(r2, c2-1) == 'n'){
+        num_adjacent_shared ++;
+      }
+    }
+    else if(c1 == c2){
+      // columns are the same
+      if(name.get_value(r1 + 1,c1) == 'n'){
+        num_adjacent_shared ++;
+      }
+      else if(name.get_value(r1 - 1, c2) == 'n'){
+        num_adjacent_shared ++;
+      }
+      else if(name.get_value(r2 + 1, c1) == 'n'){
+        num_adjacent_shared ++;
+      }
+      else if(name.get_value(r2 - 1, c2) == 'n'){
+        num_adjacent_shared ++;
+    }
+    else{
+      // diagonally adjacent
+    }
+  }
+    else{
+      if(((r1 + 1 == r2) || (r2 + 1 == r1)) && ((c1 + 1 == c2) || (c2 + 1 == c1))){
+        if(r1 + 1 == r2){
+          if(name.get_value(r1 + 1, c1) == 'n'){
+            num_adjacent_shared ++;
+          }
+          else if(name.get_value(r1, c1 + 1) == 'n'){
+            num_adjacent_shared ++;
+          }
+        }
+        else if(r2 + 1 == r1){
+          if(name.get_value(r2 + 1, c2)){
+            num_adjacent_shared ++;
+          }
+          else if(name.get_value(r2, c2 + 1)){
+            num_adjacent_shared ++;
+          }
+        }
+      }
+      else if(((r1 - 1 == r2) || (r2 - 1 == r1)) && ((c1 + 1 == c2) || (c2 + 1 == c1))){
+        if(r1 - 1 == r2){
+          if(name.get_value(r1 - 1, c1) == 'n'){
+            num_adjacent_shared ++;
+          }
+          else if(name.get_value(r1, c1 + 1) == 'n'){
+            num_adjacent_shared ++;
+          }
+        }
+        else if(r2 - 1 == r1){
+          if(name.get_value(r2 - 1, c2) == 'n'){
+            num_adjacent_shared ++;
+          }
+          else if(name.get_value(r2, c2 + 1) == 'n'){
+            num_adjacent_shared ++;
+          }
+        }
+      }
     }
   }
 
